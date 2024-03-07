@@ -5,6 +5,7 @@ import db from "../db";
 import os from "os";
 import routes from "./routes";
 import { errorHandler } from "./middleware/errorHandler";
+import cronJob from "./cronJobs";
 require("dotenv").config();
 
 const start = async () => {
@@ -24,6 +25,7 @@ const start = async () => {
 
   const server = app.listen(process.env.PORT, () => {
     console.log("Server started at http://localhost:" + process.env.PORT);
+    cronJob();
   });
 
   process.on("SIGTERM", () => {

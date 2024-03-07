@@ -22,8 +22,8 @@ const scheduleSchema = new Schema({
     type: String,
     required: true,
   },
-  cronExpression: {
-    type: String,
+  scheduledTo: {
+    type: Date,
     required: true,
   },
   status: {

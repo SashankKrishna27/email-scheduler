@@ -10,7 +10,6 @@ export const createSchedule = async (_req, _res, _next) => {
     const emailResponse = await scheduleJobAsync(data);
     if (emailResponse) {
       data.jobId = emailResponse?.name;
-      data.status = "sent";
     } else {
       data.status = "failed";
       await data.save();
