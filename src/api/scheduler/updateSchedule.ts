@@ -15,7 +15,7 @@ export const updateSchedule = async (_req, _res, _next) => {
       { new: true }
     );
     const jobs = schedule.scheduledJobs[scheduleObj?.jobId];
-    if (scheduleObj && jobs) {
+    if (scheduleObj && jobs && scheduleObj?.status !== 'sent') {
       console.log("jobs: ", jobs);
       const response: boolean =
         schedule.scheduledJobs[scheduleObj?.jobId]?.cancel();
@@ -26,7 +26,6 @@ export const updateSchedule = async (_req, _res, _next) => {
         );
         if (emailResponse) {
           scheduleObj.jobId = emailResponse?.name;
-          scheduleObj.status = "sent";
         } else {
           scheduleObj.status = "failed";
           await scheduleObj.save();

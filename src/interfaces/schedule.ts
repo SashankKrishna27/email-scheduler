@@ -5,7 +5,7 @@ export interface ScheduleInterface {
   createdAt: Date;
   subject: string;
   body: string;
-  cronExpression: string;
+  scheduledTo: Date;
   status: string;
   emailType: string;
   jobId?: string;
